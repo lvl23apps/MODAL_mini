@@ -21,8 +21,8 @@ Servo boxservo; /* right side */
 
 const int ledIn = 2;
 int topL = 140; // tested to 135
-int topR = 75; // tested to 95
-int topmid = 80; // 115
+int topR = 80; // tested to 95
+int topmid = 85; // 115
 
 int toppos = topmid;
 
@@ -33,14 +33,13 @@ int led2 = 12;           // the PWM pin the LED is attached to
 int led3 = 11;           // the PWM pin the LED is attached to
 int led4 = 10;           // the PWM pin the LED is attached to
 int brightness = 5;    // how bright the LED is
-int fadeAmount = 5;    // how many points to fade the LED by
+int fadeAmount = 20;    // how many points to fade the LED by
 
 void setup() {
   pinMode(ledIn, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 
   topservo.attach(9);
-
   topservo.write(topmid);
 
   digitalWrite(LED_BUILTIN, HIGH);
