@@ -53,21 +53,32 @@ void setup() {
 }
 
 void loop() {
-  toppos = random(topR, topL);
   topservo.attach(9);
-  
+  toppos = random(topR, topL);
+    
   topservo.write(toppos);
     if (toppos > 120) {
     topservo.detach();
+    analogWrite(led, brightness);
+    analogWrite(led4, brightness);
+
+  // change the brightness for next time through the loop:
+  brightness = brightness + fadeAmount;
+
+  // reverse the direction of the fading at the ends of the fade:
+  if (brightness <= 0 || brightness >= 255) {
+    fadeAmount = -fadeAmount;
+  }
+  // wait for x milliseconds to see the dimming effect
+  delay(1);
   }
  
   delay(10000);
   
   // set the brightness of leds:
-  analogWrite(led, brightness);
-  analogWrite(led2, brightness);
   analogWrite(led3, brightness);
-  analogWrite(led4, brightness);
+  analogWrite(led2, brightness);
+  
 
   // change the brightness for next time through the loop:
   brightness = brightness + fadeAmount;
@@ -76,8 +87,8 @@ void loop() {
   if (brightness <= 5 || brightness >= 255) {
     fadeAmount = -fadeAmount;
   }
-  // wait for 30 milliseconds to see the dimming effect
-  delay(5);
+  // wait for x milliseconds to see the dimming effect
+  delay(1);
 }
 
 void openBox() {
